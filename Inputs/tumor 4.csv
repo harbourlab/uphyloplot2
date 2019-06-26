@@ -1,0 +1,12 @@
+1,0,chr1p Loss,chr1q Loss,chr2p Loss,chr2q Loss,chr3p Loss,chr3q Loss,chr4q Gain,chr6p Gain,chr6q Loss,chr7q Loss,chr8p Gain,chr8q Gain,chr11q Loss
+1.1,0,chr2q Gain,chr4p Gain,chr5p Loss,chr5q Loss,chr11p Gain,chr17q Loss,,,,,,,
+1.1.1,41.33790738,chr5q Gain,chr6p Loss,chr12q Gain,chr19p Gain,,,,,,,,,
+1.1.2,2.401372213,chr2p Gain,chr8p Loss,chr12p Loss,chr14q Gain,chr15q Gain,chr19q Loss,chr21q Gain,,,,,,
+1.1.3,13.76500858,chr2p Gain,chr5q Gain,chr12p Loss,chr12q Gain,chr15q Gain,chr19p Gain,,,,,,,
+1.1.3.1,12.82161235,chr6p Loss,chr9q Gain,chr18q Gain,chr20q Gain,chr21q Gain,,,,,,,,
+1.2,0,chr5q Gain,chr6p Loss,chr12q Gain,chr19p Gain,,,,,,,,,
+1.2.1,0,chr2p Gain,chr4p Gain,chr11p Gain,chr17q Loss,chr18q Gain,,,,,,,,
+1.2.1.1,22.38421955,chr2q Gain,chr7p Gain,chr7q Gain,chr9q Gain,,,,,,,,,
+1.2.1.2,2.572898799,chr10p Loss,chr10q Loss,chr17p Loss,chr21q Gain,,,,,,,,,
+1.2.2,1.243567753,chr2p Gain,chr5p Gain,chr10p Loss,chr10q Loss,chr17p Loss,chr18q Gain,,,,,,,
+1.2.3,3.473413379,chr4p Gain,chr11p Gain,chr17q Loss,,,,,,,,,,

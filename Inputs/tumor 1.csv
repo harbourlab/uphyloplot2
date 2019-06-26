@@ -1,0 +1,12 @@
+1,0,hr2p Gain ,hr2p Loss ,hr2q Loss ,hr2q Gain ,hr5p Loss ,hr5q Loss ,hr6p Gain ,hr6q Loss ,hr8q Gain ,hr10q Gain ,hr11p Gain ,hr11q Loss ,hr12p Loss ,hr12q Gain ,hr14q Loss ,hr21q Gain
+1.1,11.93853428,hr1p Gain ,hr1q Loss ,hr5q Gain ,hr7q Loss ,hr11q Gain ,,,,,,,,,,,
+1.1.1,10.67769898,hr9p Gain ,hr9q Gain ,hr19q Gain ,,,,,,,,,,,,,
+1.1.1.1,27.34436564,hr20p Gain,,,,,,,,,,,,,,,
+1.1.2,47.28132388,hr9p Gain ,hr19q Gain,,,,,,,,,,,,,,
+1.2,0,hr21p Gain,,,,,,,,,,,,,,,
+1.2.1,0,hr5q Gain ,hr20p Gain ,hr22q Loss,,,,,,,,,,,,,
+1.2.1.1,0.591016548,hr7p Gain ,hr19q Gain,,,,,,,,,,,,,,
+1.2.1.2,0.669818755,hr7q Loss ,hr17q Loss,,,,,,,,,,,,,,
+1.2.2,0,hr1q Loss ,hr4q Gain ,hr7q Loss ,hr9p Gain ,hr11q Gain ,hr18p Loss ,hr18q Loss,,,,,,,,,
+1.2.2.1,1.063829787,hr5q Gain ,hr13q Loss,,,,,,,,,,,,,,
+1.2.2.2,0.433412136,hr7q Gain ,hr8p Gain ,hr9q Gain ,hr20p Gain ,hr20q Gain,,,,,,,,,,,
