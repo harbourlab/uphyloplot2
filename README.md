@@ -1,5 +1,5 @@
 # UPhyloplot2
-Draw phylogenetic trees of tumor evolution.
+Draw phylogenetic trees of tumor evolution. Script will plot a phylogenetic tree based on input CSV files, containing the percentage of cells in each tree (see example CSV files).
 
 Dependencies: csv, math, copy, os
 
