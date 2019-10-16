@@ -1,6 +1,6 @@
 # UPhyloPlot2 Version 1.0
 # Stefan Kurtenbach
-# Stefan.Kurtenbach@med.miami.edu
+# Stefan.Kurtenbach@me.com
 
 
 import csv
