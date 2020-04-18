@@ -1,9 +1,14 @@
 # UPhyloplot2
-Draw phylogenetic trees of tumor evolution. Script will plot a phylogenetic tree based on input CSV files, containing the percentage of cells in each tree (see example CSV files).
+Draw phylogenetic trees of tumor evolution, as seen in our Nature communications paper (Nature Communications volume 11, Article number: 496 (2020). 
 
-Dependencies: csv, math, copy, os
+This python tool takes the ".cell_groupings" files from the inferCNV output, and generates the evolutionary plots. inferCNV needs to be run with HMM, which will produce a "HMM_CNV_predictions.HMMi6.rand_trees.hmm_mode-subclusters.Pnorm_0.5.cell_groupings” file.
 
-Place python script in same folder containing a "Input" folder and run. An example input folder can be downloaded on this github page. Will produce a "output.svg" vector graphics plot.
+Place python script in a folder also containing a "Input" folder with all the "cell_groupings" files. Files need to end with ".cell_groupings", but can have any name before. You can download example data from this github page to test the program. 
 
+Quick start, run the script with this simple command. 
+
+python UPhyloPlot2.py
+
+UPhyloPlot2 will generate a "output.svg" vector graphics plot. Also, it will generate a new folder called "CNV_files", containing the subclone ID's identified by inferCNV in column 1, the percentage of cells for each subclone in column 2, and the letter marking the subclone in the output.svg file in column 3. 
 
 ![alt text](https://raw.githubusercontent.com/StefanKurtenbach/UPhyloplot2/master/Screen%20Shot%202019-06-26%20at%2010.43.48%20AM.png)
