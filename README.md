@@ -8,9 +8,9 @@ This python tool takes the ".cell_groupings" files from the inferCNV output, and
 Place python script in a folder also containing a "Input" folder with all the "cell_groupings" files. Files need to end with ".cell_groupings", but can have any name before. You can download example data from this github page to test the program. 
 
 Quick start, run the script with this simple command. 
-
+<pre>
 python UPhyloPlot2.py
-
+</pre>
 Optional:
 -c Defines the percentage cutoff used to remove smaller subclones. Default is 5 (Only subclones that comprise at least 5% of cells will be included for plotting.
 
