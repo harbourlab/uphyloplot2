@@ -1,13 +1,107 @@
-# UPhyloPlot2 Version 1.0
+# UPhyloPlot2 Version 2.0
 # Stefan Kurtenbach
 # Stefan.Kurtenbach@me.com
-
 
 import csv
 import math
 import os
 import copy
+import shutil
+import argparse
 
+######### GENERATING CSV Files starts here
+
+parser = argparse.ArgumentParser(description='UPhyloPlot2_args')
+parser.add_argument('-c','--cutoff', help='define cutoff of clones, default is 5', required=False, type=int, default=10)
+args = vars(parser.parse_args())
+
+cutoff = args["cutoff"]
+
+
+if os.path.exists("CNV_files"):
+    shutil.rmtree("CNV_files")
+os.mkdir("CNV_files")
+
+for working_file in os.listdir("./Inputs/"):
+    if working_file.endswith(".cell_groupings"):
+        with open("./Inputs/" + working_file) as groupings_file:
+            subclones = [] # these are the subclones directly from the file, can be used to calculate percentages
+            for x, line in enumerate(groupings_file):
+                subclone_concatenated = ""
+                if x > 0:
+                    line_split = line.split("\t")[0]
+                    line_split = line_split.split(".")
+                    subclone = []
+                    for i in line_split:
+                        if len(i) == 1:
+                            try:
+                                subclone.append(int(i))
+                            except:
+                                pass
+
+                    for j in subclone:
+                        if subclone_concatenated == "":
+                            subclone_concatenated = str(j)
+                        else:
+                            subclone_concatenated += "."
+                            subclone_concatenated += str(j)
+                    subclones.append(subclone_concatenated)
+
+        ### remove all subclones with lower than cutoff percentage
+        total_cells = len(subclones)
+        subclones_cutoffed = []
+        for i in subclones:
+                percentage = subclones.count(i) * 100 / total_cells
+                if percentage >= cutoff:
+                    subclones_cutoffed.append(i)
+
+        ### add all missing subclones, (which will have 0 percent cells). 1.1.1.1 needs 1.1.1, 1.1, and 1 too, which is missing in the data sometimes
+        subclones_with_branches = copy.copy(subclones_cutoffed)
+        temp = []
+        for i in subclones_with_branches:
+            try:
+                x = i
+                while len(x) > 2:
+                    x = x[:-2]
+                    temp.append(x) # will create a lot of duplicates but doesn't matter here as they are filtered later
+            except:
+                pass
+        for i in temp:
+            subclones_with_branches.append(i)
+
+        ########## the following is neccessary to sort the list correctly, makes all entries same length
+        expanded_unique_subclones = [] #unique subclones including branches
+        for i in subclones_with_branches:
+            x = i
+            while len(x) < 7:
+                x += (".0")
+            expanded_unique_subclones.append(x)
+        unique_subclones = sorted(list(set(expanded_unique_subclones)))
+        # now remove all .0 again
+        unique_subclones_final = []
+        for i in unique_subclones:
+            x = i
+            while x[-2:] == ".0":
+                x = x[:-2]
+            unique_subclones_final.append(x)
+        ###########
+
+        #### determine percentages and remove cells with cutoff
+        clones_percentages = [] # [[Clone, Percentage], ...]
+        for i in unique_subclones_final:
+            percentage = subclones.count(i) * 100/total_cells
+            clones_percentages.append([i, percentage])
+
+        with open("./CNV_files/"+working_file+'.csv', mode='w') as output:
+            writer = csv.writer(output, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            for i in clones_percentages:
+                writer.writerow(i)
+
+
+
+######### PLOTTING STARTS HERE
+
+clones_IDs = []  # list of clones, and their letter in the plot [[clone, letter], ..]
 output = []
 #colors = ["#8E8E8E", "#EA9898", "#71C2C6", "#EDB843", "#C270E8", "#6E5BDD", "#7FAD7F", "#8E8E8E", "#EA9898", "#71C2C6", "#EDB843", "#C270E8", "#6E5BDD", "#7FAD7F", "#8E8E8E", "#EA9898", "#71C2C6", "#EDB843", "#C270E8", "#6E5BDD", "#7FAD7F", "#8E8E8E", "#EA9898", "#71C2C6", "#EDB843", "#C270E8", "#6E5BDD", "#7FAD7F"]  # first is grey
 colors = ["#C15A5B", "#9DABC5", "#81BED0", "#AAD1B6", "#6AAB73", "#E7E689", "#D89560", "#85593E", "#C55E7B", "#9F8272", "#365584", "#6582A2", "#6B8675", "#61497B", "#E7C665", "#E7C689", "#A89593"]
@@ -23,11 +117,12 @@ start_pos = [60, 20]
 space_between_plots = 110
 additional_space_between_circles = 5 + (2 * radius_circles)
 
-ABC = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "O", "P", "Q"]
+ABC = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "@", "#", "$", "%", "^", "&", "*"]
 
 filename = "output.svg"
 if os.path.exists(filename):
     os.remove(filename)
+
 
 def write_to_file(row):
     with open(filename, "a") as f:
@@ -44,12 +139,12 @@ def draw_circle(x_coord, y_coord):
 
 
 plot_nr = -1
-for working_file in os.listdir("./Inputs"):
+for working_file in os.listdir("./CNV_files"):
     if working_file.endswith(".csv"):
         plot_nr += 1
         sample_name = working_file.split(".")[0]
         output.append('''<text x="''' + str(start_pos[0] + space_between_plots*plot_nr) + '''" y="''' + str(start_pos[1]) + '''" text-anchor='middle' font-family="'ArialMT'" font-size="">''' + sample_name + '''</text>''')
-        with open("Inputs/" + working_file) as current_file:
+        with open("CNV_files/" + working_file) as current_file:
 ### draw first two circles and bar as they are always the same
             output.append(draw_rect(0, 0, 100 + additional_space_between_circles, 100, 0, colors[0])) # rect  2 radius added to still have small spaces between circles for small numbers
             current_color = 1
@@ -72,7 +167,6 @@ for working_file in os.listdir("./Inputs"):
                 next_circles = []
 
                 for data_row in input_data:
-                    #print(data_row)
                     if len(data_row[0].split(".")) == step + 2:  # if one of the next circles (starts with 1.1, 1.2 for ==step+2
                         for current_circle in current_circles:
                             if data_row[0][:len(str(current_circle[0]))] == str(current_circle[0]):  # is that a subsequent circle?
@@ -97,6 +191,8 @@ for working_file in os.listdir("./Inputs"):
                                 for rownr, row in enumerate(input_data):
                                     if row[0] == text:
                                         text = ABC[rownr]
+                                        if [row[0], text] not in clones_IDs:
+                                            clones_IDs.append([row[0], text])
                                         break
 
 
@@ -118,3 +214,21 @@ for i in output:
     if i[:5] != "<circ" and i[:5] != "<rect":
         write_to_file(i)
 write_to_file("</svg>")
+
+
+##############  Replace all CSV files, and add which letter was assigned to the clones
+
+for working_file in os.listdir("./CNV_files"):
+    if working_file.endswith(".csv"):
+        with open("./CNV_files/" + working_file) as current_file:
+            reader = csv.reader(current_file, delimiter=",")
+            input_data = list(reader)
+            for x, i in enumerate(input_data):
+                for p, q in enumerate(clones_IDs):
+                    if i[0] == q[0]:
+                        input_data[x].append(clones_IDs[p][1])
+
+        with open("./CNV_files/"+working_file, mode='w') as output:
+            writer = csv.writer(output, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            for i in input_data:
+                writer.writerow(i)
