@@ -3,9 +3,9 @@ Draw phylogenetic trees of tumor evolution, as seen in our Nature communications
 
 ![alt text](https://raw.githubusercontent.com/StefanKurtenbach/UPhyloplot2/master/Screen%20Shot%202019-06-26%20at%2010.43.48%20AM.png)
 
-This python tool takes the ".cell_groupings" files from the inferCNV output, and generates the evolutionary plots. inferCNV needs to be run with HMM, which will produce a "HMM_CNV_predictions.HMMi6.rand_trees.hmm_mode-subclusters.Pnorm_0.5.cell_groupings” file.
+This python tool takes the ".cell_groupings" files from the inferCNV output, and generates the evolutionary plots. inferCNV needs to be run with HMM, which will produce a "HMM_CNV_predictions.HMMi6.rand_trees.hmm_mode-subclusters.Pnorm_0.5.cell_groupings” files used.
 
-Place python script in a folder also containing a "Input" folder with all the "cell_groupings" files. Files need to end with ".cell_groupings", but can have any name before. You can download example data from this github page to test the program. 
+Place python script in a folder also containing a "Input" folder with all the ".cell_groupings" files. Files need to end with ".cell_groupings", but can have any name before. You can download example data from this github page to test the program. 
 
 Quick start, run the script with this simple command. 
 <pre>
