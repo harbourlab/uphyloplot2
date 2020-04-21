@@ -22,8 +22,10 @@ if os.path.exists("CNV_files"):
     shutil.rmtree("CNV_files")
 os.mkdir("CNV_files")
 
+nr_of_inputs = 0
 for working_file in os.listdir("./Inputs/"):
     if working_file.endswith(".cell_groupings"):
+        nr_of_inputs += 1
         with open("./Inputs/" + working_file) as groupings_file:
             subclones = [] # these are the subclones directly from the file, can be used to calculate percentages
             for x, line in enumerate(groupings_file):
@@ -203,7 +205,8 @@ for working_file in os.listdir("./CNV_files"):
                 current_circles = copy.copy(next_circles)
 
 
-write_to_file('''<svg viewBox="0 0 ''' + str(plot_nr*150) + ''' 300" xmlns="http://www.w3.org/2000/svg">''')
+write_to_file('''<svg viewBox="0 0 ''' + str(nr_of_inputs*150) + ''' 300" xmlns="http://www.w3.org/2000/svg">''')
+
 for i in output:
     if i[:5] == "<rect":  # make sure circles are always on top
         write_to_file(i)
