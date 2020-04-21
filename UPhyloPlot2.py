@@ -1,4 +1,4 @@
-# UPhyloPlot2 Version 2.0
+# UPhyloPlot2 Version 2.1
 # Stefan Kurtenbach
 # Stefan.Kurtenbach@me.com
 
