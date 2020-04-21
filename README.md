@@ -27,3 +27,5 @@ UPhyloPlot2 will generate a "output.svg" vector graphics plot. Also, it will gen
 UPhyloplot2 will not identify the characteristic CNV changes for each subclone. If desired, these have to be be inferred manually for each subclone IDs in the "HMM_CNV_predictions.HMMi6.rand_trees.hmm_mode-subclusters.Pnorm_0.5.pred_cnv_regions.dat file from the inferCNV output manually.
 
 Please be aware that depending on the subclones present branches and subclone circles of the output.svg file might overlap. However, they can be rotated manually with Adobe Illustrator or any other svg editor. 
+
+For some reason the output SVG files appear empty when previewing in MacOS or opening with a browser. Use Adobe Illustrator or such to open them, I am working on why this issue occurs.
