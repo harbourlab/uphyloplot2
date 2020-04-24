@@ -1,7 +1,9 @@
-# UPhyloPlot2 Version 2.1.1
+
 # Stefan Kurtenbach
 # Stefan.Kurtenbach@me.com
 
+version = "2.2"
+print("UPhyloplot2 version " + version)
 import csv
 import math
 import os
@@ -106,7 +108,7 @@ for working_file in os.listdir("./Inputs/"):
 clones_IDs = []  # list of clones, and their letter in the plot [[clone, letter], ..]
 output = []
 #colors = ["#8E8E8E", "#EA9898", "#71C2C6", "#EDB843", "#C270E8", "#6E5BDD", "#7FAD7F", "#8E8E8E", "#EA9898", "#71C2C6", "#EDB843", "#C270E8", "#6E5BDD", "#7FAD7F", "#8E8E8E", "#EA9898", "#71C2C6", "#EDB843", "#C270E8", "#6E5BDD", "#7FAD7F", "#8E8E8E", "#EA9898", "#71C2C6", "#EDB843", "#C270E8", "#6E5BDD", "#7FAD7F"]  # first is grey
-colors = ["#C15A5B", "#9DABC5", "#81BED0", "#AAD1B6", "#6AAB73", "#E7E689", "#D89560", "#85593E", "#C55E7B", "#9F8272", "#365584", "#6582A2", "#6B8675", "#61497B", "#E7C665", "#E7C689", "#A89593"]
+colors = ["#C15A5B", "#9DABC5", "#81BED0", "#AAD1B6", "#6AAB73", "#E7E689", "#D89560", "#85593E", "#C55E7B", "#9F8272", "#365584", "#6582A2", "#6B8675", "#61497B", "#E7C665", "#E7C689", "#A89593", "#C15A5B", "#9DABC5", "#81BED0", "#AAD1B6", "#6AAB73", "#E7E689", "#D89560", "#85593E", "#C55E7B", "#9F8272", "#365584", "#6582A2", "#6B8675", "#61497B", "#E7C665", "#E7C689", "#A89593", "#C15A5B", "#9DABC5", "#81BED0", "#AAD1B6", "#6AAB73", "#E7E689", "#D89560", "#85593E", "#C55E7B", "#9F8272", "#365584", "#6582A2", "#6B8675", "#61497B", "#E7C665", "#E7C689", "#A89593", "#C15A5B", "#9DABC5", "#81BED0", "#AAD1B6", "#6AAB73", "#E7E689", "#D89560", "#85593E", "#C55E7B", "#9F8272", "#365584", "#6582A2", "#6B8675", "#61497B", "#E7C665", "#E7C689", "#A89593"]
 current_color = 0
 
 overall_scale_factor = 1        # total size of everything
@@ -119,8 +121,7 @@ start_pos = [60, 20]
 space_between_plots = 110
 additional_space_between_circles = 5 + (2 * radius_circles)
 
-ABC = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "@", "#", "$", "%", "^", "&", "*"]
-
+ABC = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "@", "#", "$", "%", "^", "&", "*", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 filename = "output.svg"
 if os.path.exists(filename):
     os.remove(filename)
