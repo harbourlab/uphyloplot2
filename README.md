@@ -1,4 +1,4 @@
-# UPhyloplot2 version 2.1.1
+# UPhyloplot2 version 2.2
 If you encounter any issues or to request features please open an issue on this github page!
 
 Draw phylogenetic trees of tumor evolution, as seen in our Nature communications paper (Nature Communications volume 11, Article number: 496 (2020). 
