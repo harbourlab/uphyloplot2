@@ -1,4 +1,4 @@
-# UPhyloPlot2 Version 2.1
+# UPhyloPlot2 Version 2.1.1
 # Stefan Kurtenbach
 # Stefan.Kurtenbach@me.com
 
@@ -12,7 +12,7 @@ import argparse
 ######### GENERATING CSV Files starts here
 
 parser = argparse.ArgumentParser(description='UPhyloPlot2_args')
-parser.add_argument('-c','--cutoff', help='define cutoff of clones, default is 5', required=False, type=int, default=10)
+parser.add_argument('-c','--cutoff', help='define cutoff of clones, default is 5', required=False, type=int, default=5)
 args = vars(parser.parse_args())
 
 cutoff = args["cutoff"]
