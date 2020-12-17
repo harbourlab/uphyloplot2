@@ -3,7 +3,7 @@
 # Stefan.Kurtenbach@me.com
 def main():
     version = "2.3"
-    print("UPhyloplot2 version " + version)
+    print("uphyloplot2 version " + version)
     import csv
     import math
     import os
@@ -13,7 +13,7 @@ def main():
 
 ######### GENERATING CSV Files starts here
 
-    parser = argparse.ArgumentParser(description='UPhyloPlot2_args')
+    parser = argparse.ArgumentParser(description='uphyloplot2_args')
     parser.add_argument('-c','--cutoff', help='define cutoff of clones, default is 5', required=False, type=int, default=5)
     args = vars(parser.parse_args())
 
