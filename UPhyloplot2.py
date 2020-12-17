@@ -2,7 +2,7 @@
 # Stefan Kurtenbach
 # Stefan.Kurtenbach@me.com
 def main():
-    version = "2.2"
+    version = "2.3"
     print("UPhyloplot2 version " + version)
     import csv
     import math
