@@ -1,4 +1,4 @@
-# UPhyloplot2 version 2.2
+# UPhyloplot2 version 2.3
 If you encounter any issues or to request features please open an issue on this github page, and state the version you are running.
 
 Please cite  UPhyloplot2: Visualizing Phylogenetic Trees from Single-Cell RNA-seq Data, Stefan Kurtenbach, Daniel A. Rodriguez, Michael A. Durante, J. William Harbour, bioRxiv 2020.05.25.115550; doi: https://doi.org/10.1101/2020.05.25.115550 
