@@ -1,11 +1,11 @@
-# UPhyloplot2 version 2.3
+# uphyloplot2 version 2.3
 If you encounter any issues or to request features please open an issue on this github page, and state the version you are running.
 
-Please cite  UPhyloplot2: Visualizing Phylogenetic Trees from Single-Cell RNA-seq Data, Stefan Kurtenbach, Daniel A. Rodriguez, Michael A. Durante, J. William Harbour, bioRxiv 2020.05.25.115550; doi: https://doi.org/10.1101/2020.05.25.115550 
+Please cite  uphyloplot2: Visualizing Phylogenetic Trees from Single-Cell RNA-seq Data, Stefan Kurtenbach, Daniel A. Rodriguez, Michael A. Durante, J. William Harbour, bioRxiv 2020.05.25.115550; doi: https://doi.org/10.1101/2020.05.25.115550 
 
 Draw phylogenetic trees of tumor evolution, as seen in our Nature communications paper (Nature Communications volume 11, Article number: 496 (2020). 
 
-![alt text](https://raw.githubusercontent.com/StefanKurtenbach/UPhyloplot2/master/Screen%20Shot%202019-06-26%20at%2010.43.48%20AM.png)
+![alt text](https://raw.githubusercontent.com/StefanKurtenbach/uphyloplot2/master/Screen%20Shot%202019-06-26%20at%2010.43.48%20AM.png)
 
 This python tool takes the ".cell_groupings" files from the inferCNV output, and generates the evolutionary plots. inferCNV needs to be run with HMM, which will produce the "HMM_CNV_predictions.HMMi6.rand_trees.hmm_mode-subclusters.Pnorm_0.5.cell_groupings” files used for plotting. cluster_by_groups should be set to FALSE.
 
@@ -13,14 +13,14 @@ Place python script in a folder also containing a "Input" folder with all the ".
 
 Quick start, run the script with this simple command. 
 <pre>
-python UPhyloplot2.py
+python uphyloplot2.py
 </pre>
 Optional:
 -c Defines the percentage cutoff used to remove smaller subclones. Default is 5 (Only subclones that comprise at least 5% of cells will be included for plotting.
 
 Example usage:
 <pre>
-python UPhyloplot2.py -c 10
+python uphyloplot2.py -c 10
 </pre>
 
 
