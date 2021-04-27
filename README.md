@@ -8,7 +8,28 @@ Draw phylogenetic trees of tumor evolution, as seen in our Nature communications
 
 <img src="https://github.com/harbourlab/uphyloplot2/blob/master/Screen%20Shot%202019-06-26%20at%2010.43.48%20AM.png" width="300">
 
-This python tool takes the ".cell_groupings" files from the inferCNV output, and generates the evolutionary plots. Important! Make sure to remove the reference or control cells in the ".cell_groupings" file, which are usually at the end. inferCNV needs to be run with HMM, which will produce the "HMM_CNV_predictions.HMMi6.rand_trees.hmm_mode-subclusters.Pnorm_0.5.cell_groupings” files used for plotting. cluster_by_groups should be set to FALSE.
+
+This python tool takes input from CaSpER, HoneyBADGER, and InferCNV. Please follow the guide below to visualize your tree using inputs from all three programs. In an R session with your corressponding program loaded:
+
+<pre>
+> BiocManager::install('phylogram')
+> library(phylogram)
+> casper_dendrogram <— as.dendrogram(tree) # tree : CaSpER tree object of class 'phylo'
+> hc_dendrogram <— as.dendrogram(hc_tree) # hc_tree : HoneyBADGER tree object of class 'hclust'
+> vc_dendrogram <— as.dendrogram(vc_tree) # vc_tree: another HoneyBADGER tree object of class 'hclust'
+> write.dendrogram(insert_your_dendrogram_name,file=‘/path/to/uphyloplot2/Inputs’)
+> q()
+</pre>
+
+After exiting R, navigate to the uphyloplot2 home directory and run the following script:
+<pre>
+./newick_input.py
+</pre>
+
+The newick_input.py script parses the dendrogram object produced in the pre-processing steps above. It will output a '.cell_groupings' file
+in the ~/uphyloplot2/Inputs directory. Simply follow the command line prompts to load and analyze your data.
+
+".cell_groupings" files from the inferCNV output, and generates the evolutionary plots. Important! Make sure to remove the reference or control cells in the ".cell_groupings" file, which are usually at the end. inferCNV needs to be run with HMM, which will produce the "HMM_CNV_predictions.HMMi6.rand_trees.hmm_mode-subclusters.Pnorm_0.5.cell_groupings” files used for plotting. cluster_by_groups should be set to FALSE.
 
 Place python script in a folder also containing a "Input" folder with all the ".cell_groupings" files. Files need to end with ".cell_groupings", but can have any name before. You can download example data from this github page to test the program. 
 
