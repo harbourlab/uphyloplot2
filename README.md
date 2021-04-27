@@ -9,7 +9,7 @@ Draw phylogenetic trees of tumor evolution, as seen in our Nature communications
 <img src="https://github.com/harbourlab/uphyloplot2/blob/master/Screen%20Shot%202019-06-26%20at%2010.43.48%20AM.png" width="300">
 
 
-This python tool takes input from CaSpER, HoneyBADGER, and InferCNV. Uphyloplot2 parses through ".cell_groupings" files, and generates evolutionary plots. Please follow the guide below to visualize your tree using inputs from all three programs. You can download example data from this github page to test the program.
+Uphyloplot2 takes input from CaSpER, HoneyBADGER, and InferCNV to generate evolutionary plots. Please follow the guide below to visualize your tree using inputs from all three programs. You can download example data from this github page to test the program.
 
 1. Download uphyloplot2 and recreate the following directory structure:
    ../Uphyloplot2/
