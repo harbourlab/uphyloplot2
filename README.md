@@ -9,7 +9,43 @@ Draw phylogenetic trees of tumor evolution, as seen in our Nature communications
 <img src="https://github.com/harbourlab/uphyloplot2/blob/master/Screen%20Shot%202019-06-26%20at%2010.43.48%20AM.png" width="300">
 
 
-This python tool takes input from CaSpER, HoneyBADGER, and InferCNV. Please follow the guide below to visualize your tree using inputs from all three programs. In an R session with your corressponding program loaded:
+Uphyloplot2 takes input from CaSpER, HoneyBADGER, and InferCNV to generate evolutionary plots. Please follow the guide below to visualize your tree using inputs from all three programs. You can download example data from this github page to test the program.
+
+1. Download uphyloplot2 and recreate the following directory structure:
+   ../Uphyloplot2/
+    - uphyloplot2.py
+    - newick_input.py
+    - Inputs/
+          - infercnv.cell_groupings 
+
+You must populate the "Inputs" folder with ".cell_groupings" files from your respective pipeline. Files can have any name as long as it ends in  ".cell_groupings".  
+ 
+ 2. Follow the appropriate guide below to pre-process your data:
+
+INFERCNV:
+To generate the necessary files, inferCNV needs to be run with HMM, which will produce the "HMM_CNV_predictions.HMMi6.rand_trees.hmm_mode-subclusters.Pnorm_0.5.cell_groupings” files used for plotting. cluster_by_groups should be set to FALSE when calling infercnv::run: 
+
+<pre>
+> infercnv_obj = infercnv::run(infercnv_obj,cutoff=1,out_dir="output_dir",cluster_by_groups=FALSE,plot_steps=T,scale_data=T,denoise=T,noise_filter=0.12,analysis_mode='subclusters',HMM_type='i6')
+</pre>
+
+The '.cell_groupings' file will be located in your R working directory under the path you specify with the 'out_dir=' parameter.
+It is important that you remove the reference and/or control cells in the ".cell_groupings" file. For instance, if you followed the inferCNV tutorial on the test data provided, your '.cell_groupings' file contains a 'cell_group_name' and 'cell' column with rows in the following format:
+
+<pre>
+all_observations.all_observations.1.1.1.1	  MGH264_A01
+...
+all_references.all_references.1.1.1.1	  GTEX-111FC-3326-SM-5GZYV
+</pre>
+
+On a unix system, you can quickly remove the reference cell data with the following command, substituting your values where appropriate:
+<pre>
+sed '/^all_references/d' <  infercnv.cell_groupings > trimmed_infercnv.cell_groupings 
+</pre>
+
+
+CaSpER or HoneyBADGER:
+In an R session with your corressponding R libraries and objects loaded, install and use phylogram function 'as.dendrogram()' to export your trees as newick formated strings:
 
 <pre>
 > BiocManager::install('phylogram')
@@ -27,13 +63,9 @@ After exiting R, navigate to the uphyloplot2 home directory and run the followin
 </pre>
 
 The newick_input.py script parses the dendrogram object produced in the pre-processing steps above. It will output a '.cell_groupings' file
-in the ~/uphyloplot2/Inputs directory. Simply follow the command line prompts to load and analyze your data.
+in the ~/uphyloplot2/Inputs directory. 
 
-".cell_groupings" files from the inferCNV output, and generates the evolutionary plots. Important! Make sure to remove the reference or control cells in the ".cell_groupings" file, which are usually at the end. inferCNV needs to be run with HMM, which will produce the "HMM_CNV_predictions.HMMi6.rand_trees.hmm_mode-subclusters.Pnorm_0.5.cell_groupings” files used for plotting. cluster_by_groups should be set to FALSE.
-
-Place python script in a folder also containing a "Input" folder with all the ".cell_groupings" files. Files need to end with ".cell_groupings", but can have any name before. You can download example data from this github page to test the program. 
-
-Quick start, run the script with this simple command. 
+3. Navigate to the uphyloplot2 home directory directory and run the script with this simple command:
 <pre>
 python uphyloplot2.py
 </pre>
@@ -44,7 +76,6 @@ Example usage:
 <pre>
 python uphyloplot2.py -c 10
 </pre>
-
 
 UPhyloplot2 will generate a "output.svg" vector graphics plot. Also, it will generate a new folder called "CNV_files", containing CNV files for each input, containing the subclone ID's identified by inferCNV in column 1, the percentage of cells for each subclone in column 2, and the letter marking the subclone in the output.svg file in column 3. 
 
