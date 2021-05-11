@@ -62,8 +62,36 @@ After exiting R, navigate to the uphyloplot2 home directory and run the followin
 ./newick_input.py
 </pre>
 
-The newick_input.py script parses the dendrogram object produced in the pre-processing steps above. It will output a '.cell_groupings' file
-in the ~/uphyloplot2/Inputs directory. 
+The newick_input.py script parses the dendrogram object produced in the pre-processing steps above. The script allows you to select a desired maximum length for the tree. You can see sample execution and output below:
+<pre>
+Please input the path to your newick file (no quotes, absolute or relative to current path)
+Path_to_newick_file= dendrograms/casper_dendro
+Unrooted tree detected!
+PRUNING
+###########################################################
+###########################################################
+#################   USER_INPUT    #########################
+###########################################################
+
+Your tree currently has 69 individual leaves
+The longest branch in your tree is forked 16 times
+How long do you want your tree? (input an integer)
+> Length = 4
+
+
+Name your output file:
+> File = casper_out
+###########################################################
+###########################################################
+###########################################################
+###########################################################
+
+This configuration will stack the leaves of your tree into 6 clusters
+There are 2 clusters that are smaller than 5% of the total cell population, these will not be plotted.
+Not Plotted Clusters:  [11, 13]
+</pre>
+
+It will output a '.cell_groupings' file in the ~/Uphyloplot2/Inputs directory. For instance, in the example above, a 'casper_out.cell_groupings' will be placed in the Uphyloplot2/Inputs directory. 
 
 3. Navigate to the uphyloplot2 home directory directory and run the script with this simple command:
 <pre>
