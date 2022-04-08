@@ -1,7 +1,8 @@
 # uphyloplot2 version 2.3
 If you encounter any issues or to request features please open an issue on this github page, and state the version you are running.
 
-Please cite  uphyloplot2: Visualizing Phylogenetic Trees from Single-Cell RNA-seq Data, Stefan Kurtenbach, Daniel A. Rodriguez, Michael A. Durante, J. William Harbour, bioRxiv 2020.05.25.115550; doi: https://doi.org/10.1101/2020.05.25.115550 
+Please cite  
+Kurtenbach, S., Cruz, A.M., Rodriguez, D.A. et al. Uphyloplot2: visualizing phylogenetic trees from single-cell RNA-seq data. BMC Genomics 22, 419 (2021). https://doi.org/10.1186/s12864-021-07739-3
 
 Draw phylogenetic trees of tumor evolution, as seen in our Nature communications paper (Nature Communications volume 11, Article number: 496 (2020). 
 
