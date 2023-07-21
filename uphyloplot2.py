@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-# Stefan Kurtenbach
-# Stefan.Kurtenbach@me.com
+# Stefan Kurtenbach, edited by Andrew Erickson
+# Stefan.Kurtenbach@me.com, edited by ericksonandrewm@gmail.com
 def main():
     version = "2.3"
     print("uphyloplot2 version " + version)
@@ -162,43 +162,46 @@ def main():
                     input_data = list(reader)
 
                     longest_tree = 0
+                    
                     for data_row in input_data:
-                        if len(data_row[0].split(".")) > longest_tree:
+                        if data_row and len(data_row[0].split(".")) > longest_tree:
                             longest_tree = len(data_row[0].split("."))
 
                     for step in range(longest_tree):  # first circle is already placed
                         next_circles = []
 
                         for data_row in input_data:
-                            if len(data_row[0].split(".")) == step + 2:  # if one of the next circles (starts with 1.1, 1.2 for ==step+2
-                                for current_circle in current_circles:
-                                    if data_row[0][:len(str(current_circle[0]))] == str(current_circle[0]):  # is that a subsequent circle?
-                                        if step == 0: current_angle = 60
-                                        else: current_angle = angle_of_subclones
-                                        for iteration in range(current_circle[3]): # define which angle
-                                            if current_angle < 0:
-                                                current_angle -= angle_of_subclones
-                                            current_angle *= -1
-                                        current_circle[3] += 1
+                            if data_row:  # check if data_row is not empty
+                                if len(data_row[0].split(".")) == step + 2:  # if one of the next circles (starts with 1.1, 1.2 for ==step+2
+                                    for current_circle in current_circles:
+                                        if data_row[0][:len(str(current_circle[0]))] == str(current_circle[0]):  # is that a subsequent circle?
+                                            if step == 0: current_angle = 60
+                                            else: current_angle = angle_of_subclones
+                                            for iteration in range(current_circle[3]): # define which angle
+                                                if current_angle < 0:
+                                                    current_angle -= angle_of_subclones
+                                                current_angle *= -1
+                                            current_circle[3] += 1
 
-                                        delta_x = ((math.sin(math.radians(current_angle))) * (float(data_row[1]) * scale_factor_data + additional_space_between_circles)) * overall_scale_factor
-                                        delta_y = ((math.cos(math.radians(current_angle))) * (float(data_row[1]) * scale_factor_data + additional_space_between_circles)) * overall_scale_factor
+                                            delta_x = ((math.sin(math.radians(current_angle))) * (float(data_row[1]) * scale_factor_data + additional_space_between_circles)) * overall_scale_factor
+                                            delta_y = ((math.cos(math.radians(current_angle))) * (float(data_row[1]) * scale_factor_data + additional_space_between_circles)) * overall_scale_factor
 
-                                        output.append(draw_rect(current_circle[1], current_circle[2], float(data_row[1]) * scale_factor_data + additional_space_between_circles, 100, current_angle, colors[current_color]))
-                                        current_color += 1
-                                        output.append(draw_circle(current_circle[1] + delta_x, current_circle[2] + delta_y))
-                                        next_circles.append([data_row[0], current_circle[1] + delta_x, current_circle[2] + delta_y, 0])
+                                            output.append(draw_rect(current_circle[1], current_circle[2], float(data_row[1]) * scale_factor_data + additional_space_between_circles, 100, current_angle, colors[current_color]))
+                                            current_color += 1
+                                            output.append(draw_circle(current_circle[1] + delta_x, current_circle[2] + delta_y))
+                                            next_circles.append([data_row[0], current_circle[1] + delta_x, current_circle[2] + delta_y, 0])
 
 
-                                        text = str(data_row[0])
-                                        for rownr, row in enumerate(input_data):
-                                            if row[0] == text:
-                                                text = ABC[rownr]
-                                                if [row[0], text] not in clones_IDs:
-                                                    clones_IDs.append([row[0], text])
-                                                break
-                                        output.append('''<text text-anchor='middle' ><tspan x="''' + str(current_circle[1] + delta_x + start_pos[0] + plot_nr * space_between_plots) + '''" y="''' + str(current_circle[2] + delta_y + start_pos[1] + 15 + 3) + '''" font-family="'ArialMT'" font-size="8">''' + text + '''</tspan>''')
-                                        output.append("</text>")
+                                            text = str(data_row[0])
+                                            for rownr, row in enumerate(input_data):
+                                                if row:
+                                                    if row[0] == text:
+                                                        text = ABC[rownr]
+                                                        if [row[0], text] not in clones_IDs:
+                                                            clones_IDs.append([row[0], text])
+                                                        break
+                                            output.append('''<text text-anchor='middle' ><tspan x="''' + str(current_circle[1] + delta_x + start_pos[0] + plot_nr * space_between_plots) + '''" y="''' + str(current_circle[2] + delta_y + start_pos[1] + 15 + 3) + '''" font-family="'ArialMT'" font-size="8">''' + text + '''</tspan>''')
+                                            output.append("</text>")
                         current_circles = copy.copy(next_circles)
 
 
@@ -225,8 +228,9 @@ def main():
                 input_data = list(reader)
                 for x, i in enumerate(input_data):
                     for p, q in enumerate(clones_IDs):
-                        if i[0] == q[0]:
-                            input_data[x].append(clones_IDs[p][1])
+                        if len(i) > 0 and len(q) > 0:
+                            if i[0] == q[0]:
+                                input_data[x].append(clones_IDs[p][1])
 
             with open("./CNV_files/"+working_file, mode='w') as output:
                 writer = csv.writer(output, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
